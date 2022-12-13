@@ -1,0 +1,14 @@
+[
+    {
+        "id":"1",
+        "hindi":"App kaise ho",
+        "english":"How are you",
+        "type":"sentence"
+    },
+    {
+        "id":"2",
+        "hindi":"Mai acha hu",
+        "english":"I am fine",
+        "type":"sentence"
+    }
+]

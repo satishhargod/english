@@ -1,0 +1,25 @@
+.self-intro{
+    text-align: left;
+    margin: 15px 15px 0px 15px;
+    color: #fafafa;
+    font-weight: 500;
+    font-size: 17px;
+    font-family: "Lucida Console", "Courier", monospace;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #c3c5c5;
+    padding: 8px;
+    background-color: #697374;
+}
+
+.self-intro li{
+    text-align: left;
+    margin: 15px 15px 0px 15px;
+    color: #fafafa;
+    font-weight: 500;
+    font-size: 17px;
+    font-family: "Lucida Console", "Courier", monospace;
+    outline: none;
+    cursor: pointer;
+    padding: 8px;
+}
