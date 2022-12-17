@@ -2,38 +2,118 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
-import Sentence from './data/english.json'
-import dailyLife from './data/dailylife.json'
-import officaily from './data/officialyenglish.json'
-import vocabulary from './data/vocabulary.json'
-import insertsentence from './data/insertSentence.json'
+import parse from 'html-react-parser';
+import {
+  getSentence,
+  getDailyLife,
+  getOfficaily,
+  getStories,
+  getVocabulary,
+  getInterview
+} from './fetchdata'
 
 function App() {
   const [sentence, setSentence] = useState([]);
+  const [interviewQuestion, setInterviewQuestion] = useState([]);
+  const [stories, setStories] = useState([]);
+  const [interview, setInterview] = useState([]);
+  const [divActive, setDivActive] = useState({
+    sentence: true,
+    stories: false,
+    interview: false
+  });
   const [active, setActive] = useState(null)
   const [screenType, setScreenType] = useState('sentence')
   const [selectedClient, setSelectedClient] = useState([]);
   const [value, setValue] = useState([]);
 
   useEffect(() => {
-    setSentence(Sentence);
+    // getSentence()
+    //   .then((data) => {
+    //     setSentence(data);
+    //   })
+
   }, []);
 
   function handleSelectChange(event) {
+    console.log(divActive)
     if (event.target.value == "all") {
-      setSentence(Sentence);
+
+      setSentence([]);
     }
     if (event.target.value == "sentence") {
-      setSentence(Sentence);
+      setDivActive({
+        sentence: true,
+        stories: false,
+        interview: false
+      })
+      getSentence()
+        .then((data) => {
+          setSentence(data);
+        })
+      //setSentence(sentence);
     }
     if (event.target.value == "dailylife") {
-      setSentence(dailyLife);
+      setDivActive({
+        sentence: true,
+        stories: false,
+        interview: false
+      })
+      getDailyLife()
+        .then((data) => {
+          setSentence(data);
+        })
     }
     if (event.target.value == "vocabulary") {
-      setSentence(vocabulary);
+      setDivActive({
+        sentence: true,
+        stories: false,
+        interview: false
+      })
+      getVocabulary()
+        .then((data) => {
+          setSentence(data);
+        })
     }
     if (event.target.value == "officaily") {
-      setSentence(officaily);
+      setDivActive({
+        sentence: true,
+        stories: false,
+        interview: false
+      })
+      getOfficaily()
+        .then((data) => {
+          setSentence(data);
+        })
+    }
+    if (event.target.value == "stories") {
+      setDivActive({
+        sentence: true,
+        stories: false,
+        interview: false
+      })
+      getStories()
+        .then((data) => {
+          setDivActive({
+            sentence: false,
+            stories: true,
+            interview: false
+          })
+          setStories(data);
+        })
+    }
+    if (event.target.value == "interview") {
+      setDivActive({
+        sentence: false,
+        stories: false,
+        interview: true
+      })
+      getInterview()
+        .then((data) => {
+          console.log("interview")
+          setInterviewQuestion(data)
+          //setInterview(data);
+        })
     }
 
     setSelectedClient(event.target.value);
@@ -54,11 +134,11 @@ function App() {
   //   //insertsentence = insertsentence.push({ "sentence": value })
   // }
 
-  function handleSubmit (){
+  function handleSubmit() {
     console.log("save")
   }
 
-  // let snumber = 1
+  let snumber = 1
   return (
 
     <div>
@@ -74,34 +154,77 @@ function App() {
       <button className="filter-button" >Refresh Question</button>
       <button className="filter-button" >JavaScript Question</button>
       <button className="filter-button" >Node Question</button> */}
-          <select name="cars" id="cars" onChange={handleSelectChange}>
+          <select name="cars" class="select-for-sentence" onChange={handleSelectChange}>
             <option value="all">All</option>
             <option value="sentence">Sentence</option>
             <option value="dailylife">Daily Uses</option>
             <option value="vocabulary">Vocabulary</option>
             <option value="officaily">Officaily</option>
+            <option value="stories">Story</option>
+            <option value="interview">Interview</option>
           </select>
-          {sentence.map((item, index) => (
-            <>
-              <div key={item} className="english-sentence-box">
-                <div className={`english-sentence ${active == item && 'active '}`} onClick={() => setActive(item)}>
-                  <div className={"question"}>
-                    {item.hindi}
-                  </div>
-                  <div className={"answer"}>
-                    {item.english ? item.english : ""}
+          {
+            divActive.sentence &&
+            sentence.map((item, index) => (
+              <>
+                <div key={item} className="english-sentence-box">
+                  <div className={`english-sentence`} >
+                    <div className={`question ${active == item && 'active '}`} onClick={() => setActive(item)}>
+                      {item.hindi}
+                      <div className={"answer"}>
+                        {item.english ? item.english : ""}
+                      </div>
+                    </div>
+
                   </div>
                 </div>
-              </div>
-            </>
-          ))
+              </>
+            ))
+
           }
+
+          {
+            divActive.stories &&
+            <>
+              {stories.map((item, index) => (
+                <>
+                  <div className={`story-name ${active == item && 'active '} ${item.answer ? "is-answer" : ""}`} onClick={() => setActive(item)} key={index}>
+                    {item.name.toUpperCase()}
+                    <div className={"story-data"}>
+                      {item.data ? parse(item.data) : ""}
+                    </div>
+                  </div>
+
+                </>
+              ))
+              }
+            </>
+          }
+
+          {
+            divActive.interview &&
+            <>
+              {interviewQuestion.map((item, index) => (
+                <>
+                  <div className={`interview-questions ${active == item && 'active '} ${item.answer ? "is-answer" : ""}`} onClick={() => setActive(item)} key={index}>
+                    {snumber++}. {item.question}
+                    <div className={""}>
+                      {item.answer ? parse(item.answer) : ""}
+                    </div>
+                  </div>
+
+                </>
+              ))
+              }
+            </>
+          }
+
         </div>}
       {/* sentance screen end */}
 
 
       {/* insert screen start */}
-      {screenType == "insertsentence" &&
+      {/* {screenType == "insertsentence" &&
         <div className="insert-sentence">
           <form >
             <label>
@@ -110,7 +233,7 @@ function App() {
             <input type="button" onClick={handleSubmit} value="Submit" />
           </form>
         </div>
-      }
+      } */}
       {/* insert screen end */}
     </div>
 

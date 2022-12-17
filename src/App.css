@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+body{
+  background: #eee;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -15,8 +17,9 @@
   border-bottom: 1px solid #979899;
   /* display: none; */  
 }
-select{
+.select-for-sentence{
   float: right;
+  padding: 3px;
 }
 
 .english-sentence div{
@@ -24,18 +27,81 @@ select{
   
 }
 .question{
-  padding: 2px;
+  padding: 4px;
   color: rgb(67, 67, 189);
   /* border-bottom: groove; */
 }
 .answer{
   color: rgb(90, 172, 90);
-  padding: 2px;
+  padding: 5px 2px 0px 0px;
   margin-bottom: 5px;
+  display: none;
 }
+
+
+.interview-questions{
+  text-align: left;
+  margin: 15px 15px 0px 15px;
+  color: #787a7a;
+  font-weight: 900;
+  font-size: 17px;
+  font-family: "Lucida Console", "Courier", monospace;
+  outline: none;
+  cursor: pointer;
+  /* border: 1px solid #c3c5c5; */
+  padding: 8px;
+}
+.is-answer{
+  color: rgb(58, 57, 57); 
+}
+.interview-questions div{
+  display: none;
+  text-align: left;
+  margin: 15px 15px 0px 15px;
+  color: #5b5c5c;
+  font-weight: 500;
+}
+.story-name{
+  text-align: left;
+  margin: 15px 15px 0px 15px;
+  color: #303131;
+  font-weight: 600;
+  font-size: 17px;
+  font-family: "Lucida Console", "Courier", monospace;
+  outline: none;
+  cursor: pointer;
+  /* border: 1px solid #c3c5c5; */
+  padding: 8px;
+}
+.story-name div{
+  display: none;
+  text-align: left;
+  margin: 15px 15px 0px 15px;
+  color: #303131;
+  font-weight: 200;
+}
+
+.story-data{
+  /* display: none; */
+  border: 0;
+    font-family: inherit;
+    font-size: 100%;
+    font-style: inherit;
+    font-weight: inherit;
+    margin: 0;
+    outline: 0;
+}
+
 .active div{
   display: block;
 }
+/* .interview-questions div{
+  display: none;
+  text-align: left;
+  margin: 15px 15px 0px 15px;
+  color: #5b5c5c;
+  font-weight: 500;
+} */
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
