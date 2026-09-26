@@ -1,0 +1,150 @@
+.backLink {
+  display: inline-block;
+  margin: 14px 0 14px;
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+// ---------- Hero (colorful top card, changes per day) ----------
+.hero {
+  position: relative;
+  border-radius: var(--radius);
+  padding: 22px 18px 20px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent-from) 16%, #ffffff),
+    color-mix(in srgb, var(--accent-to) 14%, #ffffff)
+  );
+  border: 1px solid color-mix(in srgb, var(--accent-from) 30%, white);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120px 80px at 90% -10%,
+    color-mix(in srgb, var(--accent-to) 35%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.dayBadge {
+  position: relative;
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-from), var(--accent-to));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 12px -4px color-mix(in srgb, var(--accent-from) 70%, transparent);
+}
+
+.title {
+  position: relative;
+  font-size: 22px;
+  margin: 0 0 10px;
+  font-weight: 800;
+  color: #1f2330;
+}
+
+.meta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.dot {
+  opacity: 0.6;
+}
+
+// ---------- Article (the actual reading experience) ----------
+.article {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.9;
+  color: #2b2f3a;
+  box-shadow: 0 2px 10px rgba(20, 20, 40, 0.04);
+}
+
+.article p {
+  margin: 0 0 18px;
+}
+
+.article p:last-child {
+  margin-bottom: 0;
+}
+
+// Big colorful drop-cap on the first letter — feels like a "real" story
+.firstPara::first-letter {
+  float: left;
+  font-family: Georgia, serif;
+  font-weight: 800;
+  font-size: 52px;
+  line-height: 42px;
+  padding: 6px 10px 0 0;
+  background: linear-gradient(160deg, var(--accent-from), var(--accent-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+// Subtle color highlight so paragraphs don't feel flat/plain-white
+.article p:nth-child(odd) {
+  position: relative;
+  padding-left: 12px;
+  border-left: 3px solid color-mix(in srgb, var(--accent-from) 35%, transparent);
+}
+
+.article p:nth-child(even) {
+  position: relative;
+  padding-left: 12px;
+  border-left: 3px solid color-mix(in srgb, var(--accent-to) 35%, transparent);
+}
+
+// ---------- Bottom navigation ----------
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.navBtn,
+.navBtnPrimary {
+  padding: 11px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.navBtn {
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+}
+
+.navBtnPrimary {
+  border: none;
+  margin-left: auto;
+  color: #fff;
+  background: linear-gradient(90deg, var(--accent-from), var(--accent-to));
+  box-shadow: 0 6px 16px -4px color-mix(in srgb, var(--accent-from) 60%, transparent);
+}
