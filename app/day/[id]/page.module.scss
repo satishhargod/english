@@ -1,0 +1,54 @@
+.backLink {
+  display: inline-block;
+  margin: 14px 0 6px;
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.title {
+  font-size: 20px;
+  margin: 4px 0 16px;
+}
+
+.article {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+
+.article p {
+  margin: 0 0 14px;
+}
+
+.article p:last-child {
+  margin-bottom: 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.navBtn,
+.navBtnPrimary {
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+}
+
+.navBtnPrimary {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  margin-left: auto;
+}
